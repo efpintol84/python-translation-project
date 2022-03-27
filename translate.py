@@ -29,7 +29,16 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    pass
+#    rna_sequence = rna_sequence.upper()
+    amino_acid= ""
+    for i in range (0, len(rna_sequence), 3):
+        codon = rna_sequence[i:i+3]
+        amino_acid += genetic_code[codon]
+    return (amino_acid)
+
+
+#    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
+
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
@@ -98,8 +107,7 @@ def get_complement(sequence):
     nucleotides = list(sequence)
 #    for element in nucleotides:
 #        if element not in complementary:
-#            print (element)
-    nucleotides = [complementary[nucleotide] for nucleotide in sequence]
+#            print (element)    nucleotides = [complementary[nucleotide] for nucleotide in sequence]
     complement = ''.join(nucleotides)
     return complement
 
@@ -122,14 +130,9 @@ def reverse_and_complement(sequence):
     sequence = sequence.upper()
     complementary = {'A': 'U', 'C': 'G', 'G': 'C', 'U': 'A'}
     nucleotides = list(sequence)
-#    for element in nucleotides:
-#        if element not in complementary:
-#            print (element)
     nucleotides = [complementary[nucleotide] for nucleotide in sequence]
     complement = ''.join(nucleotides)
-#    return complement
 
-#    complement = complement.upper()
     reverse_complement = complement[::-1]
     return reverse_complement
 
@@ -161,7 +164,7 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    
 
 
 if __name__ == '__main__':
