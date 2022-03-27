@@ -29,18 +29,24 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
+#    print (rna_sequence)
     rna_sequence = rna_sequence.upper()
+    rna_seq_new = rna_sequence.replace("\n", "")
+    rna_seq_new = rna_seq_new.strip()
     genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
 
+    if len(rna_seq_new) <=1:
+        return ""
+    translated_prot = str("")
 
-    translated_prot = ""
-    for i in range (0, len(rna_sequence), 3):
-        codon = rna_sequence[i:i+3]
+    for i in range (0, len(rna_seq_new), 3):
+        codon = rna_seq_new[i:i+3]
         if len(codon) != 3:
-            continue
-        amino_acid += genetic_code[codon]
-        elif amino_acid == "*":
-            continue
+            break
+        amino_acid = genetic_code[codon]
+
+        if amino_acid == "*":
+            break
         translated_prot += amino_acid
     return translated_prot
 
