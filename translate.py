@@ -29,26 +29,27 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-#    print (rna_sequence)
+
     rna_sequence = rna_sequence.upper()
     rna_seq_new = rna_sequence.replace("\n", "")
-    rna_seq_new = rna_seq_new.strip()
+#    rna_se_new = rna_seq_new.strip()
     genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
 
-    if len(rna_seq_new) <=1:
-        return ""
-    translated_prot = str("")
+#    if len(rna_seq_new) <1:
+#        return ""
+    translated_AA = str("")
 
     for i in range (0, len(rna_seq_new), 3):
         codon = rna_seq_new[i:i+3]
-        if len(codon) != 3:
+        if len(rna_seq_new) <=1:
+            return ""
+        elif len(codon) !=3:
             break
         amino_acid = genetic_code[codon]
-
         if amino_acid == "*":
             break
-        translated_prot += amino_acid
-    return translated_prot
+        translated_AA += amino_acid
+    return translated_AA
 
 
 
@@ -84,8 +85,39 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-#    return sequence[::-1]
-#    print(sequence)
+
+    print(rna_sequence)
+
+    rna_sequence = rna_sequence.upper()
+    rna_seq_new = rna_sequence.replace("\n", "")
+    rna_seq_new = rna_seq_new.strip()
+    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T'>
+
+    flag = 1
+    AA_list = list((""))
+
+
+    while flag:
+        start = rna_seq_new.find('AUG')
+#    for i in range (0, len(rna_seq_new), 3):
+        codon = rna_seq_new[i:i+3]
+        if len(rna_seq_new) == -1:
+#            return ""
+            flag = 0 
+        else:
+            done = 0
+        while done! = 0:
+            i = start
+            codon = rna_seq_new[i:i+3]
+            if codon == "UAG"
+                stop = i
+                
+        amino_acid = genetic_code[codon]
+        if amino_acid == "*":
+            break
+        AA_list += amino_acid
+    return AA_list
+
 
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
@@ -99,9 +131,11 @@ def get_reverse(sequence):
     >>> get_reverse('AUGC')
     'CGUA'
     """
+
     sequence = sequence.upper()
     reverse_seq = sequence[::-1]
     return reverse_seq
+
 
 def get_complement(sequence):
     """Get the complement of a `sequence` of nucleotides.
