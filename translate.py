@@ -135,9 +135,8 @@ def get_complement(sequence):
     sequence = sequence.upper()
     complementary = {'A': 'U', 'C': 'G', 'G': 'C', 'U': 'A'}
     nucleotides = list(sequence)
-    complement = ''.join(nucleotides)
-    return complement
-
+    nucleotides = [complementary[nucleotide] for nucleotide in sequence]
+    return ''.join(nucleotides)
 
 
 def reverse_and_complement(sequence):
