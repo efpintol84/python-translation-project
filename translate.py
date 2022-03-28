@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 
 import sys
-#import Seq
 
 def translate_sequence(rna_sequence, genetic_code):
     """Translates a sequence of RNA into a sequence of amino acids.
@@ -32,11 +31,8 @@ def translate_sequence(rna_sequence, genetic_code):
 
     rna_sequence = rna_sequence.upper()
     rna_seq_new = rna_sequence.replace("\n", "")
-#    rna_se_new = rna_seq_new.strip()
     genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
 
-#    if len(rna_seq_new) <1:
-#        return ""
     translated_AA = str("")
 
     for i in range (0, len(rna_seq_new), 3):
@@ -86,37 +82,24 @@ def get_all_translations(rna_sequence, genetic_code):
         `rna_sequence`.
     """
 
-    print(rna_sequence)
-
     rna_sequence = rna_sequence.upper()
     rna_seq_new = rna_sequence.replace("\n", "")
     rna_seq_new = rna_seq_new.strip()
-    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T'>
+    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
 
-    flag = 1
-    AA_list = list((""))
+    codon_ultimo = (len(rna_seq_new) - 3)
+    AA_string = []
 
 
-    while flag:
-        start = rna_seq_new.find('AUG')
-#    for i in range (0, len(rna_seq_new), 3):
+    for i in range (codon_ultimo +1):
         codon = rna_seq_new[i:i+3]
-        if len(rna_seq_new) == -1:
-#            return ""
-            flag = 0 
-        else:
-            done = 0
-        while done! = 0:
-            i = start
-            codon = rna_seq_new[i:i+3]
-            if codon == "UAG"
-                stop = i
-                
-        amino_acid = genetic_code[codon]
-        if amino_acid == "*":
-            break
-        AA_list += amino_acid
-    return AA_list
+        if codon_ultimo <= 1:
+          return []
+        elif codon == "AUG":
+            rna_list = translate_sequence(rna_sequence = rna_seq_new[i:], genetic_code = genetic_code)
+            AA_string.append(rna_list)
+    return AA_string
+
 
 
 def get_reverse(sequence):
@@ -152,9 +135,6 @@ def get_complement(sequence):
     sequence = sequence.upper()
     complementary = {'A': 'U', 'C': 'G', 'G': 'C', 'U': 'A'}
     nucleotides = list(sequence)
-#    for element in nucleotides:
-#        if element not in complementary:
-#            print (element)    nucleotides = [complementary[nucleotide] for nucleotide in sequence]
     complement = ''.join(nucleotides)
     return complement
 
@@ -211,7 +191,29 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    
+#    print(rna_sequence) 
+    rna_sequence = rna_sequence.upper()
+    rna_seq_new = rna_sequence.replace("\n", "")
+    rna_seq_new = rna_seq_new.strip()
+    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
+
+    longpep = get_all_translations(rna_sequence = rna_seq_new[i:], genetic_code = genetic_code)
+    rev_comp = reverse_and_complement(sequence = rna_seq_new[i:])
+    rev_comp_longpep = get_all_translations(rna_sequence = rev_comp, genetic_code = genetic_code)
+
+    longpep = rev_comp_longpep + longpep
+
+#    newleng = -1
+
+    for i in longpep:
+        newleng = -1
+        if len(longpep) < 1:
+            return ''
+        if len(i) > newleng:
+            newleng = len(i)
+            longestpeptide = str(i)
+
+    return longestpeptide
 
 
 if __name__ == '__main__':
