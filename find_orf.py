@@ -63,16 +63,9 @@ def vet_nucleotide_sequence(sequence):
 
 
 
-#    dna_sequence = sequence.replace ("\n", "")
-#    dna_sequence = dna_sequence.upper()
-#    rna_pattern_str = r'((?:(T|t)(AUCG|aucg))*S)'
     rna_pattern = re.compile(rna_pattern_str)
-
-#    dna_pattern_str = r'((?:(U|u)(ATCG|atcg))*S)'
     dna_pattern = re.compile(dna_pattern_str)
 
-#    print(rna_sequence)
-#    print(dna_sequence)
 
     if rna_pattern.match(sequence):
         return
@@ -130,7 +123,7 @@ def vet_codon(codon):
     # Change `codon_pattern_str` so that it will match any valid codons, and
     # only valid codons.
     # Read the docstring above for additional clues.
-    codon_pattern_str = r'AUG'
+    codon_pattern_str = r'^(?:(AUG|aug)[Tt]*$)'
     ##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
