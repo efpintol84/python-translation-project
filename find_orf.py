@@ -123,7 +123,7 @@ def vet_codon(codon):
     # Change `codon_pattern_str` so that it will match any valid codons, and
     # only valid codons.
     # Read the docstring above for additional clues.
-    codon_pattern_str = r'^(?:(AUG|aug)[Tt]*$)'
+    codon_pattern_str = r'^(?:[AUG|aug]){3}$'
     ##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
@@ -183,7 +183,6 @@ def find_first_orf(sequence,
     """
     # Make sure the sequence is valid
     vet_nucleotide_sequence(sequence)
-
     # Make sure the codons are valid
     for codon in start_codons:
         vet_codon(codon)
@@ -211,7 +210,7 @@ def find_first_orf(sequence,
     # exactly. Change `orf_pattern_str` so that it will match any open reading
     # frame.
     # Read the docstring above for additional clues.
-    orf_pattern_str = r'AUGGUAUAA'
+    orf_pattern_str = r'^(?:AUGGUAUAA)(\w*)$'
     ##########################################################################
 
     # Create the regular expression object
