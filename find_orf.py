@@ -57,18 +57,18 @@ def vet_nucleotide_sequence(sequence):
     # any valid RNA and DNA sequence strings, respectively (and only strings of
     # RNA and DNA bases).
     # Read the docstring above for additional clues.
-#    rna_pattern_str = r'AUCG'
-#    dna_pattern_str = r'ATCG'
+    rna_pattern_str = r'^(?<![Tt])[AUCG|aucg]*$'
+    dna_pattern_str = r'^(?<![Uu])[ATCG|atcg]*$'
     ##########################################################################
 
 
 
 #    dna_sequence = sequence.replace ("\n", "")
 #    dna_sequence = dna_sequence.upper()
-    rna_pattern_str = r'((?:(T|t)(AUCG|aucg))*S)'
+#    rna_pattern_str = r'((?:(T|t)(AUCG|aucg))*S)'
     rna_pattern = re.compile(rna_pattern_str)
 
-    dna_pattern_str = r'((?:(U|u)(ATCG|atcg))*S)'
+#    dna_pattern_str = r'((?:(U|u)(ATCG|atcg))*S)'
     dna_pattern = re.compile(dna_pattern_str)
 
 #    print(rna_sequence)
