@@ -137,6 +137,7 @@ def vet_codon(codon):
 def find_first_orf(sequence,
         start_codons = ['AUG'],
         stop_codons = ['UAA', 'UAG', 'UGA']):
+
     """
     Return the first open-reading frame in the DNA or RNA `sequence`.
 
@@ -181,6 +182,7 @@ def find_first_orf(sequence,
     >>> find_first_orf('CCAUGGUAUAACC', ['AUG'], ['UAA'])
     'AUGGUAUAA'
     """
+
     # Make sure the sequence is valid
     vet_nucleotide_sequence(sequence)
     # Make sure the codons are valid
@@ -196,6 +198,7 @@ def find_first_orf(sequence,
     # Make sure seq is RNA
     seq = seq.replace('T', 'U')
 
+
     ##########################################################################
     ############################ EDIT CODE BELOW #############################
     # `orf_pattern_str` needs to be a regular expression that will match an
@@ -210,7 +213,11 @@ def find_first_orf(sequence,
     # exactly. Change `orf_pattern_str` so that it will match any open reading
     # frame.
     # Read the docstring above for additional clues.
-    orf_pattern_str = r'^((AUG)(\w*))(UGA|UAA|UAG)$(\w*)'
+
+    orf_pattern_str = r'(' + '|'.join(start_codons) + ')((\w)(\w)(\w))+(' + '|'.join(stop_codons) + ')'
+#    orf_pattern_str = r'(' + '|' ("{}"*len(start_codons)).format(*start_codons) + ')((\w)(\w)(\w))+(' + '|' ("{}"*len(stop_codons)).format(*stop_codons) + ')'
+#    orf_pattern_str = r'(' % ['AUG']')((\w)(\w)(\w))*(' % ['UAA'|'UAG'|'UGA']')'
+#    orf_pattern_str = r'(' + '|' ('AUG') + ')(\w\w\w)+(' + '|' (?:'UAA'|'UAG'|'UGA') + ')'
     ##########################################################################
 
     # Create the regular expression object
