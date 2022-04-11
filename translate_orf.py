@@ -38,10 +38,15 @@ def translate_first_orf(sequence,
     Returns
     -------
     str
-        An uppercase string of the amino acid encoded by the first ORF found in
+        An uppercase string of the amino acid sequence encoded by the first ORF found in
         the `sequence` that starts with any one of the `start_codons` and ends
         with any one of the `stop_codons`. If no ORF is found an empty string
         is returned.
+
+ An uppercase string of the first ORF found in the `sequence` that
+        starts with any one of the `start_codons` and ends with any one of the
+        `stop_codons`. If no ORF is found an empty string is returned.
+
 
     Examples
     --------
